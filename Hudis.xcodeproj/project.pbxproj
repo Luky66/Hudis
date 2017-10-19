@@ -12,7 +12,34 @@
 		6F1F9FDE1F94FE08006C473E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1F9FDC1F94FE08006C473E /* Main.storyboard */; };
 		6F1F9FE01F94FE08006C473E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1F9FDF1F94FE08006C473E /* Assets.xcassets */; };
 		6F1F9FE31F94FE08006C473E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1F9FE11F94FE08006C473E /* LaunchScreen.storyboard */; };
+		6F70D2AE1F987B930016967D /* Caller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70D2AD1F987B930016967D /* Caller.swift */; };
+		6FA7915F1F97984200D664C4 /* CallDirectoryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7915E1F97984200D664C4 /* CallDirectoryHandler.swift */; };
+		6FA791631F97984200D664C4 /* Directory.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6FA7915C1F97984200D664C4 /* Directory.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6FA791611F97984200D664C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6F1F9FCD1F94FE08006C473E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6FA7915B1F97984200D664C4;
+			remoteInfo = Directory;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6FA791671F97984200D664C4 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				6FA791631F97984200D664C4 /* Directory.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		6F1F9FD51F94FE08006C473E /* Hudis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hudis.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -22,10 +49,21 @@
 		6F1F9FDF1F94FE08006C473E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F1F9FE21F94FE08006C473E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F1F9FE41F94FE08006C473E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F70D2AD1F987B930016967D /* Caller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caller.swift; sourceTree = "<group>"; };
+		6FA7915C1F97984200D664C4 /* Directory.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Directory.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FA7915E1F97984200D664C4 /* CallDirectoryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDirectoryHandler.swift; sourceTree = "<group>"; };
+		6FA791601F97984200D664C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6F1F9FD21F94FE08006C473E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6FA791591F97984200D664C4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				6F1F9FD71F94FE08006C473E /* Hudis */,
+				6FA7915D1F97984200D664C4 /* Directory */,
 				6F1F9FD61F94FE08006C473E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				6F1F9FD51F94FE08006C473E /* Hudis.app */,
+				6FA7915C1F97984200D664C4 /* Directory.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,8 +100,18 @@
 				6F1F9FDF1F94FE08006C473E /* Assets.xcassets */,
 				6F1F9FE11F94FE08006C473E /* LaunchScreen.storyboard */,
 				6F1F9FE41F94FE08006C473E /* Info.plist */,
+				6F70D2AD1F987B930016967D /* Caller.swift */,
 			);
 			path = Hudis;
+			sourceTree = "<group>";
+		};
+		6FA7915D1F97984200D664C4 /* Directory */ = {
+			isa = PBXGroup;
+			children = (
+				6FA7915E1F97984200D664C4 /* CallDirectoryHandler.swift */,
+				6FA791601F97984200D664C4 /* Info.plist */,
+			);
+			path = Directory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,15 +124,34 @@
 				6F1F9FD11F94FE08006C473E /* Sources */,
 				6F1F9FD21F94FE08006C473E /* Frameworks */,
 				6F1F9FD31F94FE08006C473E /* Resources */,
+				6FA791671F97984200D664C4 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				6FA791621F97984200D664C4 /* PBXTargetDependency */,
 			);
 			name = Hudis;
 			productName = Hudis;
 			productReference = 6F1F9FD51F94FE08006C473E /* Hudis.app */;
 			productType = "com.apple.product-type.application";
+		};
+		6FA7915B1F97984200D664C4 /* Directory */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6FA791661F97984200D664C4 /* Build configuration list for PBXNativeTarget "Directory" */;
+			buildPhases = (
+				6FA791581F97984200D664C4 /* Sources */,
+				6FA791591F97984200D664C4 /* Frameworks */,
+				6FA7915A1F97984200D664C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Directory;
+			productName = Directory;
+			productReference = 6FA7915C1F97984200D664C4 /* Directory.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -95,6 +164,10 @@
 				ORGANIZATIONNAME = "Lukas Bühler";
 				TargetAttributes = {
 					6F1F9FD41F94FE08006C473E = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					6FA7915B1F97984200D664C4 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
@@ -114,6 +187,7 @@
 			projectRoot = "";
 			targets = (
 				6F1F9FD41F94FE08006C473E /* Hudis */,
+				6FA7915B1F97984200D664C4 /* Directory */,
 			);
 		};
 /* End PBXProject section */
@@ -129,6 +203,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6FA7915A1F97984200D664C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -137,11 +218,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F1F9FDB1F94FE08006C473E /* ViewController.swift in Sources */,
+				6F70D2AE1F987B930016967D /* Caller.swift in Sources */,
 				6F1F9FD91F94FE08006C473E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6FA791581F97984200D664C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6FA7915F1F97984200D664C4 /* CallDirectoryHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6FA791621F97984200D664C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6FA7915B1F97984200D664C4 /* Directory */;
+			targetProxy = 6FA791611F97984200D664C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6F1F9FDC1F94FE08006C473E /* Main.storyboard */ = {
@@ -211,7 +309,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -262,7 +360,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -273,10 +371,12 @@
 		6F1F9FE81F94FE08006C473E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WJ3MX3Y7U8;
 				INFOPLIST_FILE = Hudis/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lukasBuehler.Hudis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -288,13 +388,47 @@
 		6F1F9FE91F94FE08006C473E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WJ3MX3Y7U8;
 				INFOPLIST_FILE = Hudis/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lukasBuehler.Hudis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		6FA791641F97984200D664C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WJ3MX3Y7U8;
+				INFOPLIST_FILE = Directory/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lukasBuehler.Hudis.Directory;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6FA791651F97984200D664C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WJ3MX3Y7U8;
+				INFOPLIST_FILE = Directory/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lukasBuehler.Hudis.Directory;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -317,6 +451,15 @@
 			buildConfigurations = (
 				6F1F9FE81F94FE08006C473E /* Debug */,
 				6F1F9FE91F94FE08006C473E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6FA791661F97984200D664C4 /* Build configuration list for PBXNativeTarget "Directory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6FA791641F97984200D664C4 /* Debug */,
+				6FA791651F97984200D664C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
