@@ -121,6 +121,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
                             
                             // Set the labels
                             self.holderNameText.text = self.callers[0].name;
+                            self.phoneNumberText.text = self.getPhoneNumberStringFromInt(int: self.callers[0].phone);
                             
                             // Show the cards
                         }
@@ -131,6 +132,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
                         DispatchQueue.main.async {
                             self.loadingWheel.stopAnimating();
                             self.holderNameText.text = "No caller found";
+                            self.phoneNumberText = "";
                         }
                     }
                     
@@ -151,21 +153,24 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "title" {
-            self.caller.name = self.foundCharacters;
+            self.caller.name = self.foundCharacters.substring(from: self.foundCharacters.index(self.foundCharacters.startIndex, offsetBy: 5)); // 1 for return and 4 for tab spaces
+            if(self.caller.name == "Callcenter")
+            {
+                self.caller.isBlocked = true;
+            }
         }
         
-        /*
+        
         if elementName == "content" {
             
             // Find phone number
-            self.caller.phone = UInt64(findPhoneNumber(string: self.foundCharacters).trimmingCharacters(in: .whitespaces))!;
-            
-            
-        }*/
+            self.caller.phone = getPhoneNumberIntFromString(string: getPhoneNumberStringFromContextString(string: self.foundCharacters));
+        }
         
         if elementName == "entry" {
             let tempCaller = Caller(phoneNumber: self.caller.phone);
-            tempCaller.name = self.caller.name.trimmingCharacters(in: .whitespaces);
+            tempCaller.name = self.caller.name;
+            
             self.callers.append(tempCaller);
             self.caller = Caller(phoneNumber: 41_00_000_00_00);
         }
@@ -184,8 +189,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         
         do {
             let regex = try NSRegularExpression(pattern: regex)
-            let results = regex.matches(in: text,
-                                        range: NSRange(text.startIndex..., in: text))
+            let results = regex.matches(in: text, range: NSRange(text.startIndex..., in: text))
             return results.map {
                 String(text[Range($0.range, in: text)!])
             }
@@ -196,19 +200,28 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     }
     
     
-    func findPhoneNumber(string: String) -> String {
-        let numbers = matches(for: "^(\\s*(\\+41|0041|0)[\\s\\-\\_]*(\\d{2})[\\s\\-\\_]*(\\d{3})[\\s\\-\\_]*(\\d{2})[\\s\\-\\_]*(\\d{2})\\s*)$|^(\\s*1\\d{2,3}\\s*)$", in: string);
-        if(numbers.count > 0)
-        {
-            return numbers[0];
-        }
-        else
-        {
-            return "";
-        }
+    func getPhoneNumberStringFromContextString(string: String) -> String {
+        let str =  string.substring(from: string.index(string.index(of: "/")!, offsetBy: 4))
+        
+        return str;
     }
     
+    func getPhoneNumberIntFromString(string: String) -> UInt64 {
+        // This is not working for stuff like 117, 1818 and so on
+        
+        // Format string
+        var str = string.removeWhitespaces()
+        str = str.substring(from: string.index(string.startIndex, offsetBy: 1))
+        str = "41"+str;
+        
+        // Convert to UInt64
+        print(str);
+        return UInt64(str)!;
+    }
     
+    func getPhoneNumberStringFromInt(int: UInt64) -> String {
+        return String(int); // Not good enough but works for now.
+    }
 }
 
 extension String {
