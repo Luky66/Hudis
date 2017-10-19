@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,22 +18,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vNA-7i-jiA">
-                                <rect key="frame" x="15" y="63" width="344" height="702"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HudisNoBackgroundIcon" translatesAutoresizingMaskIntoConstraints="NO" id="PEq-rF-dl9">
+                                <rect key="frame" x="162" y="35" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <variation key="heightClass=compact" hidden="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vNA-7i-jiA" userLabel="MainView">
+                                <rect key="frame" x="12" y="164" width="351" height="601"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HudisNoBackgroundIcon" translatesAutoresizingMaskIntoConstraints="NO" id="PEq-rF-dl9">
-                                        <rect key="frame" x="145" y="0.0" width="47" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <variation key="heightClass=compact" hidden="YES"/>
-                                    </imageView>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FhU-om-mr3">
-                                        <rect key="frame" x="24" y="58" width="296" height="80"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FhU-om-mr3" userLabel="SearchBox">
+                                        <rect key="frame" x="25" y="0.0" width="301" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RDl-Wn-72Z">
-                                                <rect key="frame" x="0.0" y="40" width="296" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <rect key="frame" x="0.0" y="40" width="301" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                 <color key="backgroundColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <state key="normal" title="Hudis?">
@@ -44,8 +44,8 @@
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Enter a phone number..." textAlignment="center" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9xp-rQ-WFn">
-                                                <rect key="frame" x="0.0" y="0.0" width="296" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="301" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                 <color key="tintColor" red="0.89411764705882346" green="0.0" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -60,62 +60,91 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evy-cj-Aq8">
-                                        <rect key="frame" x="2" y="140" width="345" height="25"/>
+                                        <rect key="frame" x="2" y="85" width="347" height="27"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N71-Ss-ooc">
-                                        <rect key="frame" x="0.0" y="173" width="344" height="529"/>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="hnA-oi-bOo">
+                                        <rect key="frame" x="156" y="151" width="37" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </activityIndicatorView>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N71-Ss-ooc" userLabel="ResultCard">
+                                        <rect key="frame" x="29" y="131" width="293" height="470"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Results:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkL-Wq-l44">
-                                                <rect key="frame" x="0.0" y="0.0" width="344" height="40"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="highlightedColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            </label>
-                                            <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" keyboardDismissMode="onDrag" translatesAutoresizingMaskIntoConstraints="NO" id="Qkw-35-VRA">
-                                                <rect key="frame" x="0.0" y="40" width="344" height="490"/>
+                                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rL1-8i-wvU" userLabel="innerView">
+                                                <rect key="frame" x="0.0" y="0.0" width="293" height="470"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="XiN-GM-M5o">
-                                                        <rect key="frame" x="25" y="0.0" width="293" height="266"/>
-                                                    </stackView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone number here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dkL-Wq-l44" userLabel="ResultCardTitle">
+                                                        <rect key="frame" x="0.0" y="0.0" width="293" height="40"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                        <color key="backgroundColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="highlightedColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Holder name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="W2i-G6-gyS">
+                                                        <rect key="frame" x="8" y="39" width="277" height="100"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zv0-La-kuL">
+                                                        <rect key="frame" x="0.0" y="426" width="293" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                        <items>
+                                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="zyF-X8-yWR"/>
+                                                            <barButtonItem title="Block" style="plain" id="lQd-jr-5cD"/>
+                                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="l5g-y5-LOU"/>
+                                                            <barButtonItem title="Details" style="plain" id="Zok-2h-Gc8"/>
+                                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="To7-bL-t9m"/>
+                                                            <barButtonItem title="Call" style="plain" id="XB9-cK-r4q"/>
+                                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="tuY-cM-4SW"/>
+                                                        </items>
+                                                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </toolbar>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address and / or description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="gyU-S3-awN">
+                                                        <rect key="frame" x="8" y="140" width="277" height="286"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="XiN-GM-M5o" firstAttribute="bottom" secondItem="Qkw-35-VRA" secondAttribute="bottom" id="0Ya-KW-uK2"/>
-                                                    <constraint firstItem="XiN-GM-M5o" firstAttribute="width" secondItem="Qkw-35-VRA" secondAttribute="width" id="MZE-ao-Ysd"/>
-                                                    <constraint firstItem="XiN-GM-M5o" firstAttribute="trailing" secondItem="Qkw-35-VRA" secondAttribute="trailing" id="RiX-06-YPp"/>
-                                                    <constraint firstItem="XiN-GM-M5o" firstAttribute="leading" secondItem="Qkw-35-VRA" secondAttribute="leading" id="lQ8-dx-BpY"/>
-                                                    <constraint firstItem="XiN-GM-M5o" firstAttribute="top" secondItem="Qkw-35-VRA" secondAttribute="top" id="oVZ-Xa-6Ad"/>
-                                                </constraints>
-                                                <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="40"/>
-                                            </scrollView>
-                                            <activityIndicatorView hidden="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HiB-zP-feg">
-                                                <rect key="frame" x="155" y="247" width="36" height="36"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <color key="color" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                            </activityIndicatorView>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="Qkw-35-VRA" firstAttribute="top" secondItem="N71-Ss-ooc" secondAttribute="top" constant="40" id="1Gd-14-elN"/>
-                                            <constraint firstItem="Qkw-35-VRA" firstAttribute="leading" secondItem="N71-Ss-ooc" secondAttribute="leading" id="M1u-Hk-Jna"/>
-                                            <constraint firstAttribute="trailing" secondItem="Qkw-35-VRA" secondAttribute="trailing" id="RIn-wL-Hdk"/>
-                                        </constraints>
+                                        <gestureRecognizers/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="15"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                <size key="value" width="0.5" height="0.40000000000000002"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="bf9-uN-Jow" appends="YES" id="seq-cd-AGN"/>
+                                            <outletCollection property="gestureRecognizers" destination="bf9-uN-Jow" appends="YES" id="7Mo-bs-Cmc"/>
+                                        </connections>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="all data provided by tel.search.ch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhX-ch-JVh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="all data provided by tel.search.ch" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhX-ch-JVh" userLabel="Data info label">
                                 <rect key="frame" x="52" y="773" width="271" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -131,18 +160,21 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="callerText" destination="dkL-Wq-l44" id="t1P-u6-aOR"/>
+                        <outlet property="holderAddressText" destination="gyU-S3-awN" id="B9P-L5-ihb"/>
+                        <outlet property="holderNameText" destination="W2i-G6-gyS" id="erC-mA-2Vo"/>
+                        <outlet property="innerCardView" destination="rL1-8i-wvU" id="9k0-wU-gS0"/>
                         <outlet property="inputErrorText" destination="evy-cj-Aq8" id="Zhk-6r-HKB"/>
-                        <outlet property="loadingWheel" destination="HiB-zP-feg" id="Yn9-Oq-eww"/>
-                        <outlet property="scrollView" destination="Qkw-35-VRA" id="QU0-v5-3wl"/>
+                        <outlet property="loadingWheel" destination="hnA-oi-bOo" id="BlQ-IY-f92"/>
+                        <outlet property="outerCardView" destination="N71-Ss-ooc" id="KcC-7y-xJY"/>
+                        <outlet property="phoneNumberText" destination="dkL-Wq-l44" id="Ahs-Ki-9V7"/>
                         <outlet property="searchButton" destination="RDl-Wn-72Z" id="99b-40-0gb"/>
-                        <outlet property="stackView" destination="XiN-GM-M5o" id="dgU-OP-Z2x"/>
                         <outlet property="textField" destination="9xp-rQ-WFn" id="RTn-Ml-mpO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="bf9-uN-Jow"/>
             </objects>
-            <point key="canvasLocation" x="116.25" y="114.08450704225352"/>
+            <point key="canvasLocation" x="112.8" y="111.57635467980296"/>
         </scene>
     </scenes>
     <resources>

@@ -14,25 +14,20 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var inputErrorText: UILabel!
     @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var callerText: UILabel!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var stackView: UIStackView!
-    
-    
-    // UI vars
-    var callerRecievedText = "Results:";
-    var callerLoadingText = "Loading...";
-    var callerErrorText = "Error:";
+   
+    @IBOutlet weak var outerCardView: UIView!
+    @IBOutlet weak var innerCardView: UIView!
+    @IBOutlet weak var phoneNumberText: UILabel!
+    @IBOutlet weak var holderNameText: UILabel!
+    @IBOutlet weak var holderAddressText: UILabel!
     
     var phoneNumber = "";
     
     // For XML parsing
     var callers = [Caller]();
-    var caller = Caller();
+    var caller = Caller(phoneNumber: 41_00_000_00_00);
     var foundCharacters = "";
-    
     
     
     override func viewDidLoad() {
@@ -40,6 +35,20 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         
         self.textField.delegate = self
         self.inputErrorText.text = "";
+        
+        // Shadow for card
+        // add the shadow to the base view
+        
+        outerCardView.clipsToBounds = false
+        outerCardView.layer.shadowColor = UIColor.black.cgColor
+        outerCardView.layer.shadowOpacity = 1
+        outerCardView.layer.shadowOffset = CGSize.zero
+        outerCardView.layer.shadowRadius = 15
+        outerCardView.layer.shadowPath = UIBezierPath(roundedRect: outerCardView.bounds, cornerRadius: 15).cgPath
+        
+        innerCardView.clipsToBounds = true
+        innerCardView.layer.cornerRadius = 15
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,7 +96,6 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         // UI
         self.view.endEditing(true);
         self.loadingWheel.startAnimating();
-        self.callerText.text = self.callerLoadingText;
         
         
         let url = URL(string: "https://tel.search.ch/api/?tel=\(self.phoneNumber)") // tel isn't even in the api but it works anyway
@@ -110,7 +118,11 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
                     {
                         DispatchQueue.main.async { // This is needed because we can't update the UI outside of the main thread.
                             self.loadingWheel.stopAnimating();
-                            self.callerText.text = self.callerRecievedText;
+                            
+                            // Set the labels
+                            self.holderNameText.text = self.callers[0].name;
+                            
+                            // Show the cards
                         }
                     }
                     else
@@ -118,21 +130,13 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
                         print("No caller found for \(self.phoneNumber)")
                         DispatchQueue.main.async {
                             self.loadingWheel.stopAnimating();
-                            self.callerText.text = self.callerErrorText;
+                            self.holderNameText.text = "No caller found";
                         }
                     }
                     
                 }
             }
         }).resume()
-    }
-    
-    // Creates the text for the result
-    func makeCallerText(caller: Caller) -> String
-    {
-        let text = "\(caller.label)\n\(caller.phone)";
-        
-        return text;
     }
     
     
@@ -147,23 +151,23 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         if elementName == "title" {
-            self.caller.label = self.foundCharacters;
+            self.caller.name = self.foundCharacters;
         }
         
+        /*
         if elementName == "content" {
             
             // Find phone number
-            self.caller.phone = Int(findPhoneNumber(string: self.foundCharacters).trimmingCharacters(in: .whitespaces))!;
+            self.caller.phone = UInt64(findPhoneNumber(string: self.foundCharacters).trimmingCharacters(in: .whitespaces))!;
             
             
-        }
+        }*/
         
         if elementName == "entry" {
-            let tempCaller = Caller();
-            tempCaller.label = self.caller.label.trimmingCharacters(in: .whitespaces);
-            tempCaller.phone = self.caller.phone;
+            let tempCaller = Caller(phoneNumber: self.caller.phone);
+            tempCaller.name = self.caller.name.trimmingCharacters(in: .whitespaces);
             self.callers.append(tempCaller);
-            self.caller = Caller();
+            self.caller = Caller(phoneNumber: 41_00_000_00_00);
         }
         
         
