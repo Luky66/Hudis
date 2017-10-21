@@ -7,17 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F14DED91F9A285B006825B3 /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F14DED81F9A285B006825B3 /* ActionViewController.swift */; };
+		6F14DEDC1F9A285B006825B3 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F14DEDA1F9A285B006825B3 /* MainInterface.storyboard */; };
+		6F14DEE01F9A285B006825B3 /* OpenContact.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6F14DED61F9A285B006825B3 /* OpenContact.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6F14DEE51F9A291B006825B3 /* APIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F14DEE41F9A291B006825B3 /* APIHandler.swift */; };
+		6F14DEE71F9A2938006825B3 /* APIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F14DEE61F9A2938006825B3 /* APIs.swift */; };
+		6F14DEEB1F9A48A0006825B3 /* PhoneNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F14DEEA1F9A48A0006825B3 /* PhoneNumbers.swift */; };
 		6F1F9FD91F94FE08006C473E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1F9FD81F94FE08006C473E /* AppDelegate.swift */; };
 		6F1F9FDB1F94FE08006C473E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1F9FDA1F94FE08006C473E /* ViewController.swift */; };
 		6F1F9FDE1F94FE08006C473E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1F9FDC1F94FE08006C473E /* Main.storyboard */; };
 		6F1F9FE01F94FE08006C473E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1F9FDF1F94FE08006C473E /* Assets.xcassets */; };
 		6F1F9FE31F94FE08006C473E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1F9FE11F94FE08006C473E /* LaunchScreen.storyboard */; };
-		6F70D2AE1F987B930016967D /* Caller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70D2AD1F987B930016967D /* Caller.swift */; };
+		6F70D2AE1F987B930016967D /* Callers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70D2AD1F987B930016967D /* Callers.swift */; };
 		6FA7915F1F97984200D664C4 /* CallDirectoryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7915E1F97984200D664C4 /* CallDirectoryHandler.swift */; };
 		6FA791631F97984200D664C4 /* Directory.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6FA7915C1F97984200D664C4 /* Directory.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6FF35CA71F9B237E005CEE68 /* SwissAPIKey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6FF35CA61F9B237E005CEE68 /* SwissAPIKey.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		6F14DEDE1F9A285B006825B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6F1F9FCD1F94FE08006C473E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6F14DED51F9A285B006825B3;
+			remoteInfo = OpenContact;
+		};
 		6FA791611F97984200D664C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6F1F9FCD1F94FE08006C473E /* Project object */;
@@ -35,6 +49,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				6FA791631F97984200D664C4 /* Directory.appex in Embed App Extensions */,
+				6F14DEE01F9A285B006825B3 /* OpenContact.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -42,6 +57,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6F14DED61F9A285B006825B3 /* OpenContact.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OpenContact.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F14DED81F9A285B006825B3 /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		6F14DEDB1F9A285B006825B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		6F14DEDD1F9A285B006825B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F14DEE41F9A291B006825B3 /* APIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHandler.swift; sourceTree = "<group>"; };
+		6F14DEE61F9A2938006825B3 /* APIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIs.swift; sourceTree = "<group>"; };
+		6F14DEEA1F9A48A0006825B3 /* PhoneNumbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumbers.swift; sourceTree = "<group>"; };
 		6F1F9FD51F94FE08006C473E /* Hudis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hudis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F1F9FD81F94FE08006C473E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F1F9FDA1F94FE08006C473E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,13 +71,21 @@
 		6F1F9FDF1F94FE08006C473E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F1F9FE21F94FE08006C473E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F1F9FE41F94FE08006C473E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6F70D2AD1F987B930016967D /* Caller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Caller.swift; sourceTree = "<group>"; };
+		6F70D2AD1F987B930016967D /* Callers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callers.swift; sourceTree = "<group>"; };
 		6FA7915C1F97984200D664C4 /* Directory.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Directory.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA7915E1F97984200D664C4 /* CallDirectoryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDirectoryHandler.swift; sourceTree = "<group>"; };
 		6FA791601F97984200D664C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6FF35CA61F9B237E005CEE68 /* SwissAPIKey.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = SwissAPIKey.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		6F14DED31F9A285B006825B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6F1F9FD21F94FE08006C473E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -73,11 +103,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F14DED71F9A285B006825B3 /* OpenContact */ = {
+			isa = PBXGroup;
+			children = (
+				6F14DED81F9A285B006825B3 /* ActionViewController.swift */,
+				6F14DEDA1F9A285B006825B3 /* MainInterface.storyboard */,
+				6F14DEDD1F9A285B006825B3 /* Info.plist */,
+			);
+			path = OpenContact;
+			sourceTree = "<group>";
+		};
+		6F14DEE81F9A2942006825B3 /* APIs */ = {
+			isa = PBXGroup;
+			children = (
+				6FF35CA31F9B22FA005CEE68 /* Keys */,
+				6F14DEE41F9A291B006825B3 /* APIHandler.swift */,
+				6F14DEE61F9A2938006825B3 /* APIs.swift */,
+			);
+			path = APIs;
+			sourceTree = "<group>";
+		};
+		6F14DEE91F9A296B006825B3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				6F70D2AD1F987B930016967D /* Callers.swift */,
+				6F14DEEA1F9A48A0006825B3 /* PhoneNumbers.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		6F1F9FCC1F94FE08006C473E = {
 			isa = PBXGroup;
 			children = (
 				6F1F9FD71F94FE08006C473E /* Hudis */,
 				6FA7915D1F97984200D664C4 /* Directory */,
+				6F14DED71F9A285B006825B3 /* OpenContact */,
 				6F1F9FD61F94FE08006C473E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,6 +147,7 @@
 			children = (
 				6F1F9FD51F94FE08006C473E /* Hudis.app */,
 				6FA7915C1F97984200D664C4 /* Directory.appex */,
+				6F14DED61F9A285B006825B3 /* OpenContact.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -100,7 +161,8 @@
 				6F1F9FDF1F94FE08006C473E /* Assets.xcassets */,
 				6F1F9FE11F94FE08006C473E /* LaunchScreen.storyboard */,
 				6F1F9FE41F94FE08006C473E /* Info.plist */,
-				6F70D2AD1F987B930016967D /* Caller.swift */,
+				6F14DEE91F9A296B006825B3 /* Classes */,
+				6F14DEE81F9A2942006825B3 /* APIs */,
 			);
 			path = Hudis;
 			sourceTree = "<group>";
@@ -114,9 +176,34 @@
 			path = Directory;
 			sourceTree = "<group>";
 		};
+		6FF35CA31F9B22FA005CEE68 /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				6FF35CA61F9B237E005CEE68 /* SwissAPIKey.txt */,
+			);
+			path = Keys;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		6F14DED51F9A285B006825B3 /* OpenContact */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6F14DEE11F9A285B006825B3 /* Build configuration list for PBXNativeTarget "OpenContact" */;
+			buildPhases = (
+				6F14DED21F9A285B006825B3 /* Sources */,
+				6F14DED31F9A285B006825B3 /* Frameworks */,
+				6F14DED41F9A285B006825B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenContact;
+			productName = OpenContact;
+			productReference = 6F14DED61F9A285B006825B3 /* OpenContact.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		6F1F9FD41F94FE08006C473E /* Hudis */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F1F9FE71F94FE08006C473E /* Build configuration list for PBXNativeTarget "Hudis" */;
@@ -130,6 +217,7 @@
 			);
 			dependencies = (
 				6FA791621F97984200D664C4 /* PBXTargetDependency */,
+				6F14DEDF1F9A285B006825B3 /* PBXTargetDependency */,
 			);
 			name = Hudis;
 			productName = Hudis;
@@ -163,6 +251,10 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Lukas Bühler";
 				TargetAttributes = {
+					6F14DED51F9A285B006825B3 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
 					6F1F9FD41F94FE08006C473E = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
@@ -188,11 +280,20 @@
 			targets = (
 				6F1F9FD41F94FE08006C473E /* Hudis */,
 				6FA7915B1F97984200D664C4 /* Directory */,
+				6F14DED51F9A285B006825B3 /* OpenContact */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		6F14DED41F9A285B006825B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F14DEDC1F9A285B006825B3 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6F1F9FD31F94FE08006C473E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -200,6 +301,7 @@
 				6F1F9FE31F94FE08006C473E /* LaunchScreen.storyboard in Resources */,
 				6F1F9FE01F94FE08006C473E /* Assets.xcassets in Resources */,
 				6F1F9FDE1F94FE08006C473E /* Main.storyboard in Resources */,
+				6FF35CA71F9B237E005CEE68 /* SwissAPIKey.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,13 +315,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6F14DED21F9A285B006825B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F14DED91F9A285B006825B3 /* ActionViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6F1F9FD11F94FE08006C473E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				6F1F9FDB1F94FE08006C473E /* ViewController.swift in Sources */,
-				6F70D2AE1F987B930016967D /* Caller.swift in Sources */,
+				6F14DEEB1F9A48A0006825B3 /* PhoneNumbers.swift in Sources */,
+				6F70D2AE1F987B930016967D /* Callers.swift in Sources */,
+				6F14DEE71F9A2938006825B3 /* APIs.swift in Sources */,
 				6F1F9FD91F94FE08006C473E /* AppDelegate.swift in Sources */,
+				6F14DEE51F9A291B006825B3 /* APIHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +347,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		6F14DEDF1F9A285B006825B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6F14DED51F9A285B006825B3 /* OpenContact */;
+			targetProxy = 6F14DEDE1F9A285B006825B3 /* PBXContainerItemProxy */;
+		};
 		6FA791621F97984200D664C4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6FA7915B1F97984200D664C4 /* Directory */;
@@ -242,6 +360,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		6F14DEDA1F9A285B006825B3 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6F14DEDB1F9A285B006825B3 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		6F1F9FDC1F94FE08006C473E /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -261,6 +387,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		6F14DEE21F9A285B006825B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WJ3MX3Y7U8;
+				INFOPLIST_FILE = OpenContact/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lukasBuehler.Hudis.OpenContact;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6F14DEE31F9A285B006825B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WJ3MX3Y7U8;
+				INFOPLIST_FILE = OpenContact/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lukasBuehler.Hudis.OpenContact;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		6F1F9FE51F94FE08006C473E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -437,6 +595,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6F14DEE11F9A285B006825B3 /* Build configuration list for PBXNativeTarget "OpenContact" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6F14DEE21F9A285B006825B3 /* Debug */,
+				6F14DEE31F9A285B006825B3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6F1F9FD01F94FE08006C473E /* Build configuration list for PBXProject "Hudis" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -23,10 +23,11 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     @IBOutlet weak var holderAddressText: UILabel!
     
     var phoneNumber = "";
+    var cardCenterAtStart = CGPoint();
     
     // For XML parsing
-    var callers = [Caller]();
-    var caller = Caller(phoneNumber: 41_00_000_00_00);
+    var holdersForSearch = [Holder]();
+    var currentHolderInfo = [String: String]();
     var foundCharacters = "";
     
     
@@ -49,12 +50,19 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         innerCardView.clipsToBounds = true
         innerCardView.layer.cornerRadius = 15
         
+        cardCenterAtStart = CGPoint(x: outerCardView.center.x, y: outerCardView.center.y);
+        setCardHidden(card: self.outerCardView);
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
+    
+    // --- Keyboard hiding ---------------------------------------------------
     
     // Hide keyboard when user touches outside keyboard
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -66,10 +74,16 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         textField.resignFirstResponder()
         return (true)
     }
+    
+    
+    
+    
+    // ---- Start searching --------------------------
 
     @IBAction func searchButtonPressed() {
         
         // Phone number we are searching
+        hideCardWithAnimation(card: outerCardView, time: 0.5);
         
         var tempNumber = textField.text!
         tempNumber = tempNumber.removeWhitespaces();
@@ -77,7 +91,6 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         tempNumber = tempNumber.replacingOccurrences(of: "\\-", with: "", options: NSString.CompareOptions.literal, range:nil)
         self.phoneNumber = String(tempNumber);
         
-        print(self.phoneNumber.replacingOccurrences(of: "\\d", with: "", options: NSString.CompareOptions.regularExpression, range:nil));
         if(self.phoneNumber.replacingOccurrences(of: "\\d", with: "", options: NSString.CompareOptions.regularExpression, range:nil) != "")
         {
             self.inputErrorText.text = "There are some weird symboles in there";
@@ -90,57 +103,103 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         }
         print("The phone number is: \(self.phoneNumber)");
         
-        
-        self.callers.removeAll();
+        self.holdersForSearch.removeAll();
         
         // UI
         self.view.endEditing(true);
         self.loadingWheel.startAnimating();
         
-        
-        let url = URL(string: "https://tel.search.ch/api/?tel=\(self.phoneNumber)") // tel isn't even in the api but it works anyway
-        URLSession.shared.dataTask(with: url!, completionHandler: {
-            (data, response, error) in
-            if(error != nil){
-                print("Error response from API")
-                
-                // UI
-                DispatchQueue.main.async {
-                    self.loadingWheel.stopAnimating();
-                }
-            }else{
-                let parser = XMLParser(data: data!)
-                parser.delegate = self
-                if parser.parse() {
-                    // Success, we could parse everything
-                    
-                    if(self.callers.count > 0)
-                    {
-                        DispatchQueue.main.async { // This is needed because we can't update the UI outside of the main thread.
-                            self.loadingWheel.stopAnimating();
-                            
-                            // Set the labels
-                            self.holderNameText.text = self.callers[0].name;
-                            self.phoneNumberText.text = self.getPhoneNumberStringFromInt(int: self.callers[0].phone);
-                            
-                            // Show the cards
-                        }
-                    }
-                    else
-                    {
-                        print("No caller found for \(self.phoneNumber)")
-                        DispatchQueue.main.async {
-                            self.loadingWheel.stopAnimating();
-                            self.holderNameText.text = "No caller found";
-                            self.phoneNumberText = "";
-                        }
-                    }
-                    
-                }
-            }
-        }).resume()
+        APIHandler.callAPI(phone: textField.text!, vc: self)
     }
     
+    
+    
+    
+    // --- Activating UI Stuff ---------------------------------
+    
+    static func parseAndSetData(vc: ViewController, data: Data)
+    {
+        // Start parsing
+        
+        let parser = XMLParser(data: data)
+        parser.delegate = vc;
+        
+        if parser.parse()
+        {
+            // Success, we could parse everything
+            
+            if(vc.holdersForSearch.count > 0)
+            {
+                makeAndShowCards(vc: vc, holders: vc.holdersForSearch)
+            }
+            else
+            {
+                showNoResults(vc: vc)
+            }
+        }
+    }
+    
+    static func makeAndShowCards(vc: ViewController, holders: [Holder])
+    {
+        DispatchQueue.main.async { // This is needed because we can't update the UI outside of the main thread.
+            vc.loadingWheel.stopAnimating();
+            
+            // Set the labels
+            vc.holderNameText.text = holders[0].getDisplayName();
+            vc.phoneNumberText.text = holders[0].getDisplayPhoneNumber();
+            
+            // Show the cards
+            vc.showCardWithAnimation(card: vc.outerCardView, time: 0.5);
+        }
+    }
+    
+    
+    static func showNoResults(vc: ViewController)
+    {
+        print("No caller found for \(vc.phoneNumber)")
+        DispatchQueue.main.async {
+            
+            vc.inputErrorText.text = "No caller found";
+            vc.phoneNumberText.text = "";
+        }
+    }
+    
+    
+    static func showError(vc: ViewController, statusCode: Int, text: String)
+    {
+        DispatchQueue.main.async
+        {
+            vc.loadingWheel.stopAnimating();
+            
+            if(statusCode > 0)
+            {
+                if(round(Double(statusCode/100)) == 4) // If the code starts with the character 4
+                {
+                    // Error
+                    print("Error: \(statusCode)")
+                    vc.inputErrorText.text = "Error \(statusCode): \(text)";
+                }
+                else
+                {
+                    // No error
+                    print("Status: \(statusCode)")
+                    vc.inputErrorText.text = "Request returned status code \(statusCode)";
+                }
+            }
+            else
+            {
+                // Internal error
+                print("Internal Error: \(statusCode)")
+                vc.inputErrorText.text = "Internal Error: \(text)";
+            }
+        }
+    }
+    
+    
+    
+    
+    
+    // --- Parsing Data (has to be moved eventually) ------------
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String]) {
     }
@@ -152,32 +211,114 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        if elementName == "title" {
-            self.caller.name = self.foundCharacters.substring(from: self.foundCharacters.index(self.foundCharacters.startIndex, offsetBy: 5)); // 1 for return and 4 for tab spaces
-            if(self.caller.name == "Callcenter")
-            {
-                self.caller.isBlocked = true;
-            }
-        }
         
         
-        if elementName == "content" {
-            
-            // Find phone number
-            self.caller.phone = getPhoneNumberIntFromString(string: getPhoneNumberStringFromContextString(string: self.foundCharacters));
-        }
+        
+        
         
         if elementName == "entry" {
-            let tempCaller = Caller(phoneNumber: self.caller.phone);
-            tempCaller.name = self.caller.name;
+            // When the entry tag is closed we have collected data in the currentHolderInfo dictionary and perform the necessairy actions to add a holder to the results.
             
-            self.callers.append(tempCaller);
-            self.caller = Caller(phoneNumber: 41_00_000_00_00);
+            // Go through the arguments and create the holder from the created
+            
+            // Set the holder type
+            var newHolder = Holder(caller: Caller());
+            
+            switch self.currentHolderInfo["tel:type"]!
+            {
+                case "Organisation":
+                    newHolder = newHolder as! CompanyHolder;
+                case "Person":
+                    newHolder = newHolder as! PrivateHolder;
+                default:
+                    print("Error unknown type of holder in XML!");
+            }
+            
+            // Set the caller data
+            
+            if self.currentHolderInfo["tel:phone"] != nil {
+                // Set the phone number
+                newHolder.phone = PhoneNumbers.getPhoneNumberIntFromString(string: self.currentHolderInfo["tel:phone"]!)
+            }
+            
+            // Set the holder data
+            
+            // Address
+            if self.currentHolderInfo["tel:street"] != nil {
+                // Set the street
+                
+            }
+            if self.currentHolderInfo["tel:streetno"] != nil {
+                // Set the street nomber
+                
+            }
+            if self.currentHolderInfo["tel:zip"] != nil {
+                // Set the zip
+                
+            }
+            if self.currentHolderInfo["tel:city"] != nil {
+                // Set the city
+                
+            }
+            if self.currentHolderInfo["tel:canton"] != nil {
+                // Set the canton
+                
+            }
+            if self.currentHolderInfo["tel:country"] != nil {
+                // Set the country code
+                
+            }
+            
+            
+            // Now handle type specific stuff
+            
+            if newHolder as? CompanyHolder != nil
+            {
+                // Set company holder data
+                let newHolder = newHolder as! CompanyHolder
+                
+                if self.currentHolderInfo["tel:name"] != nil {
+                    // Set the company name
+                    newHolder.name = self.currentHolderInfo["tel:name"]!;
+                }
+            }
+            if newHolder as? PrivateHolder != nil
+            {
+                // Set private holder data
+                let newHolder = (newHolder as! PrivateHolder)
+                
+                if self.currentHolderInfo["tel:firstname"] != nil {
+                    // Set the first name
+                    newHolder.firstName = self.currentHolderInfo["tel:firstname"]!;
+                }
+                
+                if self.currentHolderInfo["tel:name"] != nil {
+                    // Set the surname
+                    newHolder.name = self.currentHolderInfo["tel:name"]!
+                }
+                
+                if self.currentHolderInfo["tel:maidenname"] != nil {
+                    // Set the maiden name
+                    newHolder.maidenName = self.currentHolderInfo["tel:maidenname"]!
+                }
+            }
+            
+            // Append the new holder
+            self.holdersForSearch.append(newHolder);
+            
+            // Reset
+            self.foundCharacters = "";
+            self.currentHolderInfo = [:]; // Empty the dictionary
         }
-        
-        
-        self.foundCharacters = ""
+        else
+        {
+            // takt
+            self.currentHolderInfo[elementName] = self.foundCharacters;
+            self.foundCharacters = "";
+        }
     }
+    
+    
     
     
     func parserDidEndDocument(_ parser: XMLParser) {
@@ -185,43 +326,76 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     }
     
     
-    func matches(for regex: String, in text: String) -> [String] {
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    // Swiping gestures ----------------------------------
+    
+    
+    @IBAction func panCard(_ sender: UIPanGestureRecognizer) {
         
-        do {
-            let regex = try NSRegularExpression(pattern: regex)
-            let results = regex.matches(in: text, range: NSRange(text.startIndex..., in: text))
-            return results.map {
-                String(text[Range($0.range, in: text)!])
+        let card = sender.view!
+        let point = sender.translation(in: view)
+        card.center = CGPoint(x: cardCenterAtStart.x+point.x, y: cardCenterAtStart.y+point.y)
+        
+        if(sender.state == UIGestureRecognizerState.ended)
+        {
+            if(card.center.y >= (view.frame.height-275))
+            {
+                // The card is so far down, just let it go away
+                
+                // However, calculate the time from the velocity
+                let velocityY = sender.velocity(in: view).y;
+                var duration = Double(view.frame.height / velocityY);
+                if(duration > 0.5)
+                {
+                    duration = 0.5;
+                }
+                
+                hideCardWithAnimation(card: card, time: duration);
             }
-        } catch let error {
-            print("invalid regex: \(error.localizedDescription)")
-            return []
+            else
+            {
+                showCardWithAnimation(card: card, time: 0.3);
+            }
+        }
+        
+    }
+    
+    
+    
+    func setCardHidden(card: UIView)
+    {
+        let yOffset = view.frame.height;
+        card.center = CGPoint(x: self.cardCenterAtStart.x, y: self.cardCenterAtStart.y+yOffset);
+    }
+    
+    func setCardVisible(card: UIView)
+    {
+        card.center = self.cardCenterAtStart;
+    }
+    
+    func hideCardWithAnimation(card: UIView, time: Double)
+    {
+        UIView.animate(withDuration: time) {
+            self.setCardHidden(card: card);
+        }
+    }
+    
+    func showCardWithAnimation(card: UIView, time: Double)
+    {
+        UIView.animate(withDuration: time) {
+            self.setCardVisible(card: card);
         }
     }
     
     
-    func getPhoneNumberStringFromContextString(string: String) -> String {
-        let str =  string.substring(from: string.index(string.index(of: "/")!, offsetBy: 4))
-        
-        return str;
-    }
-    
-    func getPhoneNumberIntFromString(string: String) -> UInt64 {
-        // This is not working for stuff like 117, 1818 and so on
-        
-        // Format string
-        var str = string.removeWhitespaces()
-        str = str.substring(from: string.index(string.startIndex, offsetBy: 1))
-        str = "41"+str;
-        
-        // Convert to UInt64
-        print(str);
-        return UInt64(str)!;
-    }
-    
-    func getPhoneNumberStringFromInt(int: UInt64) -> String {
-        return String(int); // Not good enough but works for now.
-    }
 }
 
 extension String {
