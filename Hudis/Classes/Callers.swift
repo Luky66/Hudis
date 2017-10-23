@@ -45,10 +45,12 @@ class Caller {
         return name;
     }
     
-    func getDisplayPhoneNumber() -> String
+    func getMainPhoneNumberForDisplay() -> String
     {
-        return PhoneNumbers.getPhoneNumberStringFromInt(int: self.phone)
+        return PhoneNumbers.getReadableStringFromInt(int: self.phone)
     }
+    
+    
 }
 
 class Holder: Caller {
@@ -81,10 +83,45 @@ class Holder: Caller {
         
     }
     
-    
     func toCaller() -> Caller
     {
         return self as Caller;
+    }
+    
+    func setAddressFromSomething(holderInfo: [String: String])
+    {
+        let street = holderInfo["tel:street"]
+        let streetno = holderInfo["tel:streetno"]
+        let zip = holderInfo["tel:zip"]
+        let city = holderInfo["tel:city"]
+        let canton = holderInfo["tel:canton"]
+        let country = holderInfo["tel:country"]
+        
+        // Address
+        if
+            street != nil &&
+            streetno != nil &&
+            zip != nil &&
+            city != nil
+        {
+            // We have all the address info, let's set it.
+            
+            self.address = """
+                \(street!) \(streetno!)
+                \(zip!) \(city!)
+            """
+            
+            if(canton != nil)
+            {
+                 self.address = " \(canton!)"
+            }
+            
+            if(country != nil)
+            {
+                self.address += "\n \(country!)"
+            }
+            
+        }
     }
 }
 
@@ -92,6 +129,10 @@ class CompanyHolder: Holder
 {
     var category = "";
     
+    init()
+    {
+        super.init(caller: Caller())
+    }
 }
 
 class PrivateHolder: Holder
@@ -99,15 +140,22 @@ class PrivateHolder: Holder
     var firstName = "";
     var maidenName = "";
     
+    init()
+    {
+        super.init(caller: Caller())
+    }
+    
     override func getDisplayName() -> String {
+        
         if(self.maidenName != "")
         {
-            return "\(firstName) \(name)-\(maidenName)"
+            // If there is a maiden name
+            return "\(firstName) \(name) - \(maidenName)"
         }
         else
         {
+            // There is no maiden name
             return "\(firstName) \(name)"
         }
-        
     }
 }

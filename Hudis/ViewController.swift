@@ -26,7 +26,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     var cardCenterAtStart = CGPoint();
     
     // For XML parsing
-    var holdersForSearch = [Holder]();
+    var holdersForSearch = [Holder](); // Stores the different types of holders (Private, Company)
     var currentHolderInfo = [String: String]();
     var foundCharacters = "";
     
@@ -76,7 +76,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     }
     
     
-    
+    // [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"telprompt:12125551212"]];
     
     // ---- Start searching --------------------------
 
@@ -101,7 +101,6 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         {
             self.inputErrorText.text = "";
         }
-        print("The phone number is: \(self.phoneNumber)");
         
         self.holdersForSearch.removeAll();
         
@@ -146,7 +145,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
             
             // Set the labels
             vc.holderNameText.text = holders[0].getDisplayName();
-            vc.phoneNumberText.text = holders[0].getDisplayPhoneNumber();
+            vc.phoneNumberText.text = holders[0].getMainPhoneNumberForDisplay();
             
             // Show the cards
             vc.showCardWithAnimation(card: vc.outerCardView, time: 0.5);
@@ -159,6 +158,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         print("No caller found for \(vc.phoneNumber)")
         DispatchQueue.main.async {
             
+            vc.loadingWheel.stopAnimating();
             vc.inputErrorText.text = "No caller found";
             vc.phoneNumberText.text = "";
         }
@@ -210,82 +210,37 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     }
     
     
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
-        
-        
-        
-        
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
+    {
         
         if elementName == "entry" {
             // When the entry tag is closed we have collected data in the currentHolderInfo dictionary and perform the necessairy actions to add a holder to the results.
             
             // Go through the arguments and create the holder from the created
             
-            // Set the holder type
-            var newHolder = Holder(caller: Caller());
+            // Set the holder
             
             switch self.currentHolderInfo["tel:type"]!
             {
-                case "Organisation":
-                    newHolder = newHolder as! CompanyHolder;
-                case "Person":
-                    newHolder = newHolder as! PrivateHolder;
-                default:
-                    print("Error unknown type of holder in XML!");
-            }
-            
-            // Set the caller data
-            
-            if self.currentHolderInfo["tel:phone"] != nil {
-                // Set the phone number
-                newHolder.phone = PhoneNumbers.getPhoneNumberIntFromString(string: self.currentHolderInfo["tel:phone"]!)
-            }
-            
-            // Set the holder data
-            
-            // Address
-            if self.currentHolderInfo["tel:street"] != nil {
-                // Set the street
-                
-            }
-            if self.currentHolderInfo["tel:streetno"] != nil {
-                // Set the street nomber
-                
-            }
-            if self.currentHolderInfo["tel:zip"] != nil {
-                // Set the zip
-                
-            }
-            if self.currentHolderInfo["tel:city"] != nil {
-                // Set the city
-                
-            }
-            if self.currentHolderInfo["tel:canton"] != nil {
-                // Set the canton
-                
-            }
-            if self.currentHolderInfo["tel:country"] != nil {
-                // Set the country code
-                
-            }
-            
-            
-            // Now handle type specific stuff
-            
-            if newHolder as? CompanyHolder != nil
-            {
-                // Set company holder data
-                let newHolder = newHolder as! CompanyHolder
+            case "Organisation":
+                let newHolder = CompanyHolder();
                 
                 if self.currentHolderInfo["tel:name"] != nil {
                     // Set the company name
                     newHolder.name = self.currentHolderInfo["tel:name"]!;
                 }
-            }
-            if newHolder as? PrivateHolder != nil
-            {
-                // Set private holder data
-                let newHolder = (newHolder as! PrivateHolder)
+                
+                if self.currentHolderInfo["tel:phone"] != nil {
+                    // Set the phone number
+                    newHolder.phone = PhoneNumbers.getIntFromCompactString(string: self.currentHolderInfo["tel:phone"]!)
+                }
+                
+                // Append
+                self.holdersForSearch.append(newHolder);
+                    
+                
+            case "Person":
+                let newHolder = PrivateHolder();
                 
                 if self.currentHolderInfo["tel:firstname"] != nil {
                     // Set the first name
@@ -300,11 +255,20 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
                 if self.currentHolderInfo["tel:maidenname"] != nil {
                     // Set the maiden name
                     newHolder.maidenName = self.currentHolderInfo["tel:maidenname"]!
+                    
                 }
+                
+                if self.currentHolderInfo["tel:phone"] != nil {
+                    // Set the phone number
+                    newHolder.phone = PhoneNumbers.getIntFromCompactString(string: self.currentHolderInfo["tel:phone"]!)
+                }
+                
+                // Append
+                self.holdersForSearch.append(newHolder);
+                
+            default:
+                print("Error unknown type of holder in XML!");
             }
-            
-            // Append the new holder
-            self.holdersForSearch.append(newHolder);
             
             // Reset
             self.foundCharacters = "";
@@ -313,7 +277,8 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         else
         {
             // takt
-            self.currentHolderInfo[elementName] = self.foundCharacters;
+            let trimmedString = self.foundCharacters.trimmingCharacters(in: .whitespacesAndNewlines)
+            self.currentHolderInfo[elementName] = trimmedString;
             self.foundCharacters = "";
         }
     }
@@ -324,15 +289,6 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     func parserDidEndDocument(_ parser: XMLParser) {
         // Maybe do something, but I handle it on the main thread
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     // Swiping gestures ----------------------------------
@@ -401,5 +357,13 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
 extension String {
     func removeWhitespaces() -> String {
         return components(separatedBy: .whitespaces).joined()
+    }
+    
+    subscript (r: CountableClosedRange<Int>) -> String? {
+        get {
+            guard r.lowerBound >= 0, let startIndex = self.index(self.startIndex, offsetBy: r.lowerBound, limitedBy: self.endIndex),
+                let endIndex = self.index(startIndex, offsetBy: r.upperBound - r.lowerBound, limitedBy: self.endIndex) else { return nil }
+            return String(self[startIndex...endIndex])
+        }
     }
 }

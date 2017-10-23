@@ -18,6 +18,7 @@
 		6F1F9FDE1F94FE08006C473E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1F9FDC1F94FE08006C473E /* Main.storyboard */; };
 		6F1F9FE01F94FE08006C473E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1F9FDF1F94FE08006C473E /* Assets.xcassets */; };
 		6F1F9FE31F94FE08006C473E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1F9FE11F94FE08006C473E /* LaunchScreen.storyboard */; };
+		6F6B71911F9E1E6B00B502D7 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F6B71901F9E1E6B00B502D7 /* CardView.xib */; };
 		6F70D2AE1F987B930016967D /* Callers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70D2AD1F987B930016967D /* Callers.swift */; };
 		6FA7915F1F97984200D664C4 /* CallDirectoryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA7915E1F97984200D664C4 /* CallDirectoryHandler.swift */; };
 		6FA791631F97984200D664C4 /* Directory.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6FA7915C1F97984200D664C4 /* Directory.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -71,6 +72,7 @@
 		6F1F9FDF1F94FE08006C473E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F1F9FE21F94FE08006C473E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F1F9FE41F94FE08006C473E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F6B71901F9E1E6B00B502D7 /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		6F70D2AD1F987B930016967D /* Callers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callers.swift; sourceTree = "<group>"; };
 		6FA7915C1F97984200D664C4 /* Directory.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Directory.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FA7915E1F97984200D664C4 /* CallDirectoryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallDirectoryHandler.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				6F1F9FE41F94FE08006C473E /* Info.plist */,
 				6F14DEE91F9A296B006825B3 /* Classes */,
 				6F14DEE81F9A2942006825B3 /* APIs */,
+				6F6B71901F9E1E6B00B502D7 /* CardView.xib */,
 			);
 			path = Hudis;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			files = (
 				6F1F9FE31F94FE08006C473E /* LaunchScreen.storyboard in Resources */,
 				6F1F9FE01F94FE08006C473E /* Assets.xcassets in Resources */,
+				6F6B71911F9E1E6B00B502D7 /* CardView.xib in Resources */,
 				6F1F9FDE1F94FE08006C473E /* Main.storyboard in Resources */,
 				6FF35CA71F9B237E005CEE68 /* SwissAPIKey.txt in Resources */,
 			);
