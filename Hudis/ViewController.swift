@@ -15,15 +15,12 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     @IBOutlet weak var inputErrorText: UILabel!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
-   
-    @IBOutlet weak var outerCardView: UIView!
-    @IBOutlet weak var innerCardView: UIView!
-    @IBOutlet weak var phoneNumberText: UILabel!
-    @IBOutlet weak var holderNameText: UILabel!
-    @IBOutlet weak var holderAddressText: UILabel!
+    @IBOutlet weak var cardPlaceholder: UIView!
+    
     
     var phoneNumber = "";
     var cardCenterAtStart = CGPoint();
+    var cards = [CardView]();
     
     // For XML parsing
     var holdersForSearch = [Holder](); // Stores the different types of holders (Private, Company)
@@ -37,21 +34,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         self.textField.delegate = self
         self.inputErrorText.text = "";
         
-        // Shadow for card
-        // add the shadow to the base view
-        
-        outerCardView.clipsToBounds = false
-        outerCardView.layer.shadowColor = UIColor.black.cgColor
-        outerCardView.layer.shadowOpacity = 1
-        outerCardView.layer.shadowOffset = CGSize.zero
-        outerCardView.layer.shadowRadius = 15
-        outerCardView.layer.shadowPath = UIBezierPath(roundedRect: outerCardView.bounds, cornerRadius: 15).cgPath
-        
-        innerCardView.clipsToBounds = true
-        innerCardView.layer.cornerRadius = 15
-        
-        cardCenterAtStart = CGPoint(x: outerCardView.center.x, y: outerCardView.center.y);
-        setCardHidden(card: self.outerCardView);
+        cardCenterAtStart = CGPoint(x: cardPlaceholder.center.x, y: cardPlaceholder.center.y);
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,7 +66,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     @IBAction func searchButtonPressed() {
         
         // Phone number we are searching
-        hideCardWithAnimation(card: outerCardView, time: 0.5);
+        //hideCardWithAnimation(card: outerCardView, time: 0.5);
         
         var tempNumber = textField.text!
         tempNumber = tempNumber.removeWhitespaces();
@@ -143,12 +126,20 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         DispatchQueue.main.async { // This is needed because we can't update the UI outside of the main thread.
             vc.loadingWheel.stopAnimating();
             
-            // Set the labels
-            vc.holderNameText.text = holders[0].getDisplayName();
-            vc.phoneNumberText.text = holders[0].getMainPhoneNumberForDisplay();
+            for i in 0..<holders.count {
+                let newCardView = CardView(frame: CGRect(x: CGFloat(i*Int(vc.view.bounds.width)), y: 0, width: vc.cardPlaceholder.bounds.width, height: vc.cardPlaceholder.bounds.height))
+                
+                //vc.setCardHidden(card: newCardView)
+                
+                newCardView.cardTitleLabel.text = holders[i].getMainPhoneNumberForDisplay()
+                newCardView.holderNameLabel.text = holders[i].getDisplayName()
+                
+                vc.cards.append(newCardView) // Add it to the card array
+                vc.cardPlaceholder.addSubview(newCardView);
+                
+                //vc.showCardWithAnimation(card: newCardView, time: 0.5);
+            }
             
-            // Show the cards
-            vc.showCardWithAnimation(card: vc.outerCardView, time: 0.5);
         }
     }
     
@@ -160,7 +151,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
             
             vc.loadingWheel.stopAnimating();
             vc.inputErrorText.text = "No caller found";
-            vc.phoneNumberText.text = "";
+            //vc.phoneNumberText.text = "";
         }
     }
     
@@ -289,40 +280,9 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     func parserDidEndDocument(_ parser: XMLParser) {
         // Maybe do something, but I handle it on the main thread
     }
+
     
-    
-    // Swiping gestures ----------------------------------
-    
-    
-    @IBAction func panCard(_ sender: UIPanGestureRecognizer) {
-        
-        let card = sender.view!
-        let point = sender.translation(in: view)
-        card.center = CGPoint(x: cardCenterAtStart.x+point.x, y: cardCenterAtStart.y+point.y)
-        
-        if(sender.state == UIGestureRecognizerState.ended)
-        {
-            if(card.center.y >= (view.frame.height-275))
-            {
-                // The card is so far down, just let it go away
-                
-                // However, calculate the time from the velocity
-                let velocityY = sender.velocity(in: view).y;
-                var duration = Double(view.frame.height / velocityY);
-                if(duration > 0.5)
-                {
-                    duration = 0.5;
-                }
-                
-                hideCardWithAnimation(card: card, time: duration);
-            }
-            else
-            {
-                showCardWithAnimation(card: card, time: 0.3);
-            }
-        }
-        
-    }
+    // -----------
     
     
     
