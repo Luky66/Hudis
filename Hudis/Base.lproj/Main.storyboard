@@ -30,13 +30,13 @@
                                 <variation key="heightClass=compact" hidden="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNA-7i-jiA" userLabel="MainView">
-                                <rect key="frame" x="105" y="139" width="166" height="599"/>
+                                <rect key="frame" x="18" y="139" width="338" height="599"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FhU-om-mr3" userLabel="SearchBox">
-                                        <rect key="frame" x="-67" y="0.0" width="300" height="80"/>
+                                        <rect key="frame" x="19" y="0.0" width="300" height="80"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Enter a phone number..." textAlignment="center" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9xp-rQ-WFn">
-                                                <rect key="frame" x="0.0" y="0.0" width="300" height="40"/>
+                                                <rect key="frame" x="-1" y="0.0" width="300" height="41"/>
                                                 <color key="tintColor" red="0.89411764705882346" green="0.0" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="92M-He-hnR"/>
@@ -46,7 +46,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="search" textContentType="tel"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RDl-Wn-72Z">
-                                                <rect key="frame" x="0.0" y="40" width="300" height="40"/>
+                                                <rect key="frame" x="1" y="41" width="298" height="39"/>
                                                 <color key="backgroundColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                 <state key="normal" title="Hudis?">
@@ -78,7 +78,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error goes here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evy-cj-Aq8">
-                                        <rect key="frame" x="30" y="100" width="106" height="20"/>
+                                        <rect key="frame" x="29" y="100" width="276" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="G87-a5-o2i"/>
                                         </constraints>
@@ -87,7 +87,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="hnA-oi-bOo">
-                                        <rect key="frame" x="65" y="150" width="37" height="37"/>
+                                        <rect key="frame" x="151" y="150" width="37" height="37"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <constraints>
@@ -101,7 +101,7 @@
                                     <constraint firstItem="hnA-oi-bOo" firstAttribute="centerX" secondItem="vNA-7i-jiA" secondAttribute="centerX" id="ohd-Ye-8SH"/>
                                 </constraints>
                             </view>
-                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxW-zN-ECR" userLabel="CardPlaceView">
+                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FxW-zN-ECR" userLabel="CardPlaceView">
                                 <rect key="frame" x="38" y="318" width="300" height="400"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="FxW-zN-ECR" secondAttribute="height" multiplier="3:4" id="L01-EC-Dqq"/>
@@ -123,6 +123,7 @@
                             <constraint firstItem="PEq-rF-dl9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4WW-Gq-wgW"/>
                             <constraint firstItem="fhX-ch-JVh" firstAttribute="leading" secondItem="aBc-a5-hPS" secondAttribute="leading" constant="30" id="8pi-oV-Y1R"/>
                             <constraint firstItem="PEq-rF-dl9" firstAttribute="top" secondItem="aBc-a5-hPS" secondAttribute="top" constant="10" id="9ia-YR-efJ"/>
+                            <constraint firstItem="vNA-7i-jiA" firstAttribute="width" secondItem="aBc-a5-hPS" secondAttribute="width" multiplier="0.9" id="GJb-lR-jNW"/>
                             <constraint firstAttribute="bottomMargin" secondItem="vNA-7i-jiA" secondAttribute="bottom" constant="40" id="MCs-w3-3Kv"/>
                             <constraint firstItem="FxW-zN-ECR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Yok-yM-SIC"/>
                             <constraint firstItem="fhX-ch-JVh" firstAttribute="top" secondItem="FxW-zN-ECR" secondAttribute="bottom" constant="30" id="ZY9-Co-jgZ"/>
