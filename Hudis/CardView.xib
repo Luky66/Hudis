@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,112 +14,82 @@
                 <outlet property="cardTitleLabel" destination="dhh-z8-h0L" id="Zoh-5i-D5u"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="mhg-hz-JqO"/>
                 <outlet property="holderNameLabel" destination="cHu-9Z-cet" id="04Q-Xr-Uh4"/>
-                <outlet property="infoTable" destination="h6F-ez-fAD" id="scH-U2-hrP"/>
                 <outlet property="innerCard" destination="kXa-bS-1J6" id="0JR-8L-ccX"/>
-                <outlet property="outerCard" destination="3zy-Ir-eiA" id="kLg-aX-Nj5"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="313" height="493"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="294" height="469"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3zy-Ir-eiA" userLabel="ResultCard">
-                    <rect key="frame" x="0.0" y="0.0" width="313" height="493"/>
+                <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kXa-bS-1J6" userLabel="innerView">
+                    <rect key="frame" x="0.0" y="0.0" width="294" height="469"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <subviews>
-                        <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kXa-bS-1J6" userLabel="innerView">
-                            <rect key="frame" x="0.0" y="0.0" width="313" height="493"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone number here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhh-z8-h0L" userLabel="ResultCardTitle">
-                                    <rect key="frame" x="0.0" y="0.0" width="313" height="40"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="highlightedColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Holder name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="cHu-9Z-cet">
-                                    <rect key="frame" x="0.0" y="40" width="313" height="171"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" indicatorStyle="white" style="grouped" separatorStyle="none" rowHeight="40" estimatedRowHeight="40" sectionHeaderHeight="18" sectionFooterHeight="18" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h6F-ez-fAD">
-                                    <rect key="frame" x="0.0" y="218" width="313" height="230"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="tintColor" white="0.61678059900000004" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="separatorColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="sectionIndexColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="sectionIndexBackgroundColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                </tableView>
-                                <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vm-4B-WOo">
-                                    <rect key="frame" x="0.0" y="449" width="313" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                    <items>
-                                        <barButtonItem title="Block" style="plain" id="sAt-AG-rAo" userLabel="BlockButton">
-                                            <connections>
-                                                <action selector="blockButtonAction:" destination="-1" id="yMA-ph-TYh"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="edm-0O-HEd"/>
-                                        <barButtonItem title="Details" style="plain" id="seW-Ae-pGG" userLabel="DetailsButton">
-                                            <connections>
-                                                <action selector="detailsButtonAction:" destination="-1" id="66h-ob-plD"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem style="plain" systemItem="flexibleSpace" id="OfR-Mn-0UM"/>
-                                        <barButtonItem style="plain" systemItem="save" id="6AX-9D-4Ae" userLabel="SaveButton">
-                                            <connections>
-                                                <action selector="saveButtonAction:" destination="-1" id="eDk-w1-tRy"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </items>
-                                    <color key="tintColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </toolbar>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <gestureRecognizers/>
-                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Phone number here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dhh-z8-h0L" userLabel="ResultCardTitle">
+                            <rect key="frame" x="0.0" y="0.0" width="294" height="40"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="highlightedColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Holder name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="cHu-9Z-cet">
+                            <rect key="frame" x="0.0" y="40" width="294" height="162"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Vm-4B-WOo">
+                            <rect key="frame" x="0.0" y="425" width="294" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem title="Block" style="plain" id="sAt-AG-rAo" userLabel="BlockButton">
+                                    <connections>
+                                        <action selector="blockButtonAction:" destination="-1" id="yMA-ph-TYh"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="edm-0O-HEd"/>
+                                <barButtonItem title="Details" style="plain" id="seW-Ae-pGG" userLabel="DetailsButton">
+                                    <connections>
+                                        <action selector="detailsButtonAction:" destination="-1" id="66h-ob-plD"/>
+                                    </connections>
+                                </barButtonItem>
+                                <barButtonItem style="plain" systemItem="flexibleSpace" id="OfR-Mn-0UM"/>
+                                <barButtonItem title="Save" style="plain" id="6AX-9D-4Ae" userLabel="SaveButton">
+                                    <connections>
+                                        <action selector="saveButtonAction:" destination="-1" id="eDk-w1-tRy"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                            <color key="tintColor" red="0.89411764709999997" green="0.0" blue="0.16862745100000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </toolbar>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="15"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="layer.shadowColor">
-                            <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                            <size key="value" width="0.5" height="0.40000000000000002"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                            <integer key="value" value="1"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                            <integer key="value" value="5"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="ivr-zm-HXE" appends="YES" id="CFf-Lo-flw"/>
-                    </connections>
                 </view>
             </subviews>
+            <gestureRecognizers/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="7.5" y="-318.5"/>
-        </view>
-        <panGestureRecognizer minimumNumberOfTouches="1" id="ivr-zm-HXE">
             <connections>
-                <action selector="panCard:" destination="-1" id="Ttc-Kk-f6N"/>
+                <outletCollection property="gestureRecognizers" destination="HBw-o6-AhY" appends="YES" id="Tl7-gN-yiA"/>
+                <outletCollection property="gestureRecognizers" destination="qn8-Gt-gRs" appends="YES" id="aiF-Ul-rU6"/>
+                <outletCollection property="gestureRecognizers" destination="mhJ-gL-8vw" appends="YES" id="1wO-RK-3Ie"/>
+                <outletCollection property="gestureRecognizers" destination="Ogb-iu-EPo" appends="YES" id="eIG-f6-g7k"/>
+            </connections>
+            <point key="canvasLocation" x="-45" y="-336.5"/>
+        </view>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="HBw-o6-AhY">
+            <connections>
+                <action selector="panCard:" destination="-1" id="rm0-8c-qui"/>
             </connections>
         </panGestureRecognizer>
+        <swipeGestureRecognizer direction="right" id="qn8-Gt-gRs" userLabel="Swipe Right Gesture Recognizer"/>
+        <swipeGestureRecognizer direction="left" id="mhJ-gL-8vw" userLabel="Swipe Left Gesture Recognizer"/>
+        <swipeGestureRecognizer direction="down" id="Ogb-iu-EPo" userLabel="Swipe Down Gesture Recognizer"/>
     </objects>
 </document>

@@ -16,16 +16,19 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     @IBOutlet weak var cardPlaceholder: UIView!
+    @IBOutlet weak var infoText: UILabel!
     
     
     var phoneNumber = "";
     var cardCenterAtStart = CGPoint();
+    var cardSlotWidth = CGFloat(); // The width of a single card slot with margins
     var cards = [CardView]();
     
     // For XML parsing
     var holdersForSearch = [Holder](); // Stores the different types of holders (Private, Company)
     var currentHolderInfo = [String: String]();
     var foundCharacters = "";
+    
     
     
     override func viewDidLoad() {
@@ -35,6 +38,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         self.inputErrorText.text = "";
         
         cardCenterAtStart = CGPoint(x: cardPlaceholder.center.x, y: cardPlaceholder.center.y);
+        cardSlotWidth = self.cardPlaceholder.bounds.width+self.view.frame.width*0.08
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,7 +70,13 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
     @IBAction func searchButtonPressed() {
         
         // Phone number we are searching
-        //hideCardWithAnimation(card: outerCardView, time: 0.5);
+        if(cards.count > 0)
+        {
+            self.dismissAllCards();
+            self.cards = [CardView]();
+        }
+        
+        
         
         var tempNumber = textField.text!
         tempNumber = tempNumber.removeWhitespaces();
@@ -127,9 +137,13 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
             vc.loadingWheel.stopAnimating();
             
             for i in 0..<holders.count {
-                let newCardView = CardView(frame: CGRect(x: CGFloat(i*Int(vc.view.bounds.width)), y: 0, width: vc.cardPlaceholder.bounds.width, height: vc.cardPlaceholder.bounds.height))
-                
-                //vc.setCardHidden(card: newCardView)
+                let newCardView = CardView(frame: CGRect(
+                    x: vc.cardPlaceholder.frame.origin.x + CGFloat(Double(i)*Double(vc.cardSlotWidth)),
+                    y: vc.cardPlaceholder.frame.origin.y,
+                    width: vc.cardPlaceholder.bounds.width,
+                    height: vc.cardPlaceholder.bounds.height),
+                    viewController: vc
+                )
                 
                 newCardView.cardTitleLabel.text = holders[i].getMainPhoneNumberForDisplay()
                 newCardView.holderNameLabel.text = holders[i].getDisplayName()
@@ -137,7 +151,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
                 vc.cards.append(newCardView) // Add it to the card array
                 vc.cardPlaceholder.addSubview(newCardView);
                 
-                //vc.showCardWithAnimation(card: newCardView, time: 0.5);
+                newCardView.moveToFocusPoint(time: 0.5);
             }
             
         }
@@ -186,7 +200,12 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         }
     }
     
-    
+    func dismissAllCards()
+    {
+        for card in self.cards {
+            card.dismiss(time: 0.3)
+        }
+    }
     
     
     
@@ -283,34 +302,6 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
 
     
     // -----------
-    
-    
-    
-    func setCardHidden(card: UIView)
-    {
-        let yOffset = view.frame.height;
-        card.center = CGPoint(x: self.cardCenterAtStart.x, y: self.cardCenterAtStart.y+yOffset);
-    }
-    
-    func setCardVisible(card: UIView)
-    {
-        card.center = self.cardCenterAtStart;
-    }
-    
-    func hideCardWithAnimation(card: UIView, time: Double)
-    {
-        UIView.animate(withDuration: time) {
-            self.setCardHidden(card: card);
-        }
-    }
-    
-    func showCardWithAnimation(card: UIView, time: Double)
-    {
-        UIView.animate(withDuration: time) {
-            self.setCardVisible(card: card);
-        }
-    }
-    
     
 }
 
