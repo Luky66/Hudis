@@ -18,6 +18,12 @@ class Caller {
     var phone: UInt64; // 41_00_000_00_00
     var isBlocked = false;
     
+    struct PropertyKey {
+        static let name = "name"
+        static let phone = "phone"
+        static let rating = "rating"
+    }
+    
     // Constructors
     init()
     {
