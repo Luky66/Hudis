@@ -18,7 +18,6 @@
 		6F1F9FDE1F94FE08006C473E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1F9FDC1F94FE08006C473E /* Main.storyboard */; };
 		6F1F9FE01F94FE08006C473E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6F1F9FDF1F94FE08006C473E /* Assets.xcassets */; };
 		6F1F9FE31F94FE08006C473E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1F9FE11F94FE08006C473E /* LaunchScreen.storyboard */; };
-		6F41712D1F9E2C7D00C0E973 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 6F41712C1F9E2C7D00C0E973 /* .gitignore */; };
 		6F41712F1F9E2CB600C0E973 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F41712E1F9E2CB600C0E973 /* CardView.swift */; };
 		6F6B71911F9E1E6B00B502D7 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6F6B71901F9E1E6B00B502D7 /* CardView.xib */; };
 		6F70D2AE1F987B930016967D /* Callers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F70D2AD1F987B930016967D /* Callers.swift */; };
@@ -74,7 +73,6 @@
 		6F1F9FDF1F94FE08006C473E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6F1F9FE21F94FE08006C473E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6F1F9FE41F94FE08006C473E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6F41712C1F9E2C7D00C0E973 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		6F41712E1F9E2CB600C0E973 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		6F6B71901F9E1E6B00B502D7 /* CardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardView.xib; sourceTree = "<group>"; };
 		6F70D2AD1F987B930016967D /* Callers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Callers.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 		6F1F9FCC1F94FE08006C473E = {
 			isa = PBXGroup;
 			children = (
-				6F41712C1F9E2C7D00C0E973 /* .gitignore */,
 				6F1F9FD71F94FE08006C473E /* Hudis */,
 				6FA7915D1F97984200D664C4 /* Directory */,
 				6F14DED71F9A285B006825B3 /* OpenContact */,
@@ -311,7 +308,6 @@
 				6F1F9FE01F94FE08006C473E /* Assets.xcassets in Resources */,
 				6F6B71911F9E1E6B00B502D7 /* CardView.xib in Resources */,
 				6F1F9FDE1F94FE08006C473E /* Main.storyboard in Resources */,
-				6F41712D1F9E2C7D00C0E973 /* .gitignore in Resources */,
 				6FF35CA71F9B237E005CEE68 /* SwissAPIKey.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
