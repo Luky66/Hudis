@@ -38,7 +38,7 @@ class ViewController: UIViewController, UITextFieldDelegate, XMLParserDelegate {
         self.inputErrorText.text = "";
         
         cardCenterAtStart = CGPoint(x: cardPlaceholder.center.x, y: cardPlaceholder.center.y);
-        cardSlotWidth = self.cardPlaceholder.bounds.width+self.view.frame.width*0.08
+        cardSlotWidth = self.cardPlaceholder.bounds.width+self.view.frame.width*0.07
     }
 
     override func didReceiveMemoryWarning() {

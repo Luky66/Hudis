@@ -15,7 +15,11 @@ class CardView: UIView {
     
     @IBOutlet weak var cardTitleLabel: UILabel!
     @IBOutlet weak var holderNameLabel: UILabel!
-    @IBOutlet weak var infoTable: UITableView!
+    
+    @IBOutlet var panGestureRecog: UIPanGestureRecognizer!
+    @IBOutlet var swipeRightGestureRecog: UISwipeGestureRecognizer!
+    @IBOutlet var swipeLeftGestureRecog: UISwipeGestureRecognizer!
+    @IBOutlet var swipeDownGestureRecog: UISwipeGestureRecognizer!
     
     var focusPoint = CGPoint();
     var vc = ViewController();
@@ -60,9 +64,31 @@ class CardView: UIView {
 
         self.innerCard.clipsToBounds = true
         self.innerCard.layer.cornerRadius = 15
-     
 
         self.setBelowFocusPoint()
+        
+        // Gesture recognisers
+        let myPanGestureRecog = UIPanGestureRecognizer(target: self, action:#selector(panCard))
+        myPanGestureRecog.delegate = self.panGestureRecog!.delegate;
+        let mySwipeRightGestureRecog = UIPanGestureRecognizer(target: self, action:#selector(swipeRight))
+        mySwipeRightGestureRecog.delegate = self.swipeRightGestureRecog!.delegate;
+        let mySwipeLeftGestureRecog = UIPanGestureRecognizer(target: self, action:#selector(swipeLeft))
+        mySwipeLeftGestureRecog.delegate = self.swipeLeftGestureRecog!.delegate;
+        let mySwipeDownGestureRecog = UIPanGestureRecognizer(target: self, action:#selector(swipeDown))
+        mySwipeDownGestureRecog.delegate = self.swipeDownGestureRecog!.delegate;
+        // Configure the gesture recognizer and attach it to the view.
+        
+        func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                               shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+            // Do not begin the pan until the swipe fails.
+            if gestureRecognizer is UISwipeGestureRecognizer {
+                if otherGestureRecognizer is UIPanGestureRecognizer {
+                    return true
+                }
+            }
+            return false
+        }
+        
     }
     
     @IBAction func blockButtonAction(_ sender: UIBarButtonItem) {
@@ -118,13 +144,15 @@ class CardView: UIView {
         }, completion: { finished in
             self.contentView.removeFromSuperview()
         })
+        
+        
     }
     func dismissAndRemove(time: Double)
     {
         self.dismiss(time: time)
         let cardIndex = self.vc.cards.index(of: self)!
         self.vc.cards.remove(at: cardIndex) // remove the current card from the array
-        for i in Int(cardIndex)..<self.vc.cards.count-1
+        for i in Int(cardIndex)..<self.vc.cards.count
         {
             self.vc.cards[i].moveLeft(time: 0.3)
         }
@@ -134,15 +162,24 @@ class CardView: UIView {
                 card.moveRight(time: 0.3)
             }
         }
+        
+        // put the others back
+        for card in vc.cards {
+            card.moveToFocusPoint(time: 0.2)
+        }
     }
     
     
-    @IBAction func panCard(_ sender: UIPanGestureRecognizer)
+
+    
+    
+    @objc func panCard(_ sender: UIPanGestureRecognizer)
     {
         // sender.view is the current card view being moved
         // self is the card that is moved
         // self.vc is the view controller
         // movement is the translation of the card since panning
+        
         
         let movement = sender.translation(in: self.vc.view)
         
@@ -222,6 +259,25 @@ class CardView: UIView {
             }
         }
     }
+    
+    @objc func swipeLeft(_ sender: UISwipeGestureRecognizer)
+    {
+        for card in self.vc.cards {
+            card.moveLeft(time: 0.5)
+        }
+    }
+    
+    @objc func swipeRight(_ sender: UISwipeGestureRecognizer)
+    {
+        for card in self.vc.cards {
+            card.moveRight(time: 0.5)
+        }
+    }
+    
+    @objc func swipeDown(_ sender: UISwipeGestureRecognizer)
+    {
+        vc.dismissAllCards();
+    }
 }
 
 extension UIView
@@ -238,3 +294,4 @@ extension UIView
         return nil
     }
 }
+

@@ -15,6 +15,10 @@
                 <outlet property="contentView" destination="iN0-l3-epB" id="mhg-hz-JqO"/>
                 <outlet property="holderNameLabel" destination="cHu-9Z-cet" id="04Q-Xr-Uh4"/>
                 <outlet property="innerCard" destination="kXa-bS-1J6" id="0JR-8L-ccX"/>
+                <outlet property="panGestureRecog" destination="HBw-o6-AhY" id="zcy-BV-kKI"/>
+                <outlet property="swipeDownGestureRecog" destination="Ogb-iu-EPo" id="8Yi-1h-eYE"/>
+                <outlet property="swipeLeftGestureRecog" destination="mhJ-gL-8vw" id="aIY-Ui-mkw"/>
+                <outlet property="swipeRightGestureRecog" destination="qn8-Gt-gRs" id="XKu-t0-OvR"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -88,8 +92,20 @@
                 <action selector="panCard:" destination="-1" id="rm0-8c-qui"/>
             </connections>
         </panGestureRecognizer>
-        <swipeGestureRecognizer direction="right" id="qn8-Gt-gRs" userLabel="Swipe Right Gesture Recognizer"/>
-        <swipeGestureRecognizer direction="left" id="mhJ-gL-8vw" userLabel="Swipe Left Gesture Recognizer"/>
-        <swipeGestureRecognizer direction="down" id="Ogb-iu-EPo" userLabel="Swipe Down Gesture Recognizer"/>
+        <swipeGestureRecognizer direction="right" id="qn8-Gt-gRs" userLabel="Swipe Right Gesture Recognizer">
+            <connections>
+                <action selector="swipeRight:" destination="-1" id="Acn-dk-oSz"/>
+            </connections>
+        </swipeGestureRecognizer>
+        <swipeGestureRecognizer direction="left" id="mhJ-gL-8vw" userLabel="Swipe Left Gesture Recognizer">
+            <connections>
+                <action selector="swipeLeft:" destination="-1" id="3LD-cE-WSO"/>
+            </connections>
+        </swipeGestureRecognizer>
+        <swipeGestureRecognizer direction="down" id="Ogb-iu-EPo" userLabel="Swipe Down Gesture Recognizer">
+            <connections>
+                <action selector="swipeDown:" destination="-1" id="h4x-OD-lz0"/>
+            </connections>
+        </swipeGestureRecognizer>
     </objects>
 </document>
